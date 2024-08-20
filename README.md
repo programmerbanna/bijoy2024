@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Developer Evaluation Task
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This project is a Next.js application demonstrating authentication, form handling, and user management using various libraries and custom components. The application includes Google OAuth2 authentication, user login, and a form for user signup with validation.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Project Structure
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **`app/(auth)/login`**: Contains the login page with Google OAuth2 integration.
+- **`app/api/auth/google/route.ts`**: Handles Google OAuth2 authentication and token management.
+- **`app/(auth)/sign-up`**: Provides a signup form with validation.
+- **`hooks/useFetch.ts`**: Custom hook for fetching data with optional pagination and limits.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Dependencies
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **React**: A JavaScript library for building user interfaces.
+- **Next.js**: A React framework for server-side rendering and static site generation.
+- **jsonwebtoken**: A library for creating and verifying JSON Web Tokens.
+- **yup**: A schema validation library for JavaScript.
+- **formik**: A library for managing form state and validation in React.
+- **google-auth-library**: A client library for Google OAuth2 authentication.
+- **Ant Design**: A UI component library for React, providing a set of high-quality components.
 
-## Learn More
+## Setup
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the Repository**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   git clone https://github.com/programmerbanna/bijoy2024.git
+   cd bijoy2024
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2. **Install Dependencies**
+   ```
+   npm install
+   ```
+3. **Run the Development Server**
+   ```
+   npm run dev
+   ```
