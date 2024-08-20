@@ -25,7 +25,7 @@ const Main = () => {
   /* custom hooks usage */
   const { data: users, loading, error } = useFetch(url);
 
-  /** Fetch user handler **/
+  /* Fetch user handler */
   const fetchUsers = () => {
     setIsTableVisible(true);
     setUrl("https://jsonplaceholder.typicode.com/users");

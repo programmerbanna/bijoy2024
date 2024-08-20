@@ -12,10 +12,10 @@ import React from "react";
 /*                                login module                                */
 /* -------------------------------------------------------------------------- */
 const Login = () => {
-  /** hooks usage */
+  /* hooks usage */
   const router = useRouter();
 
-  /** Refresh page handler */
+  /* Refresh page handler */
   const refreshPage = () => {
     router.push(process.env.NEXT_PUBLIC_AUTHORIZED_REDIRECT!); // Redirect to Google authentication
     router.refresh();

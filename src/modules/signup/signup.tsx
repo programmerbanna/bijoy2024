@@ -40,7 +40,7 @@ export default function Signup() {
     zipcode: "",
   });
 
-  /** Modal close handler */
+  /* Modal close handler */
   const handleCloseModal = () => {
     setIsModalVisible(false);
   };

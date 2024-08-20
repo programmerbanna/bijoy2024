@@ -14,14 +14,16 @@ import Main from "@/modules/main";
 import isLoggedIn from "@/app/(auth)/lib/isLoggedIn";
 
 /* -------------------------------------------------------------------------- */
-/*                                 home module                                */
+/*                                  home page                                 */
 /* -------------------------------------------------------------------------- */
 export default async function Home() {
+  /* Check user login status */
   const loggedInResponse = await isLoggedIn();
 
+  /* Decode user information if logged in */
   let userInfo;
   if (loggedInResponse) {
-    userInfo = jwt.decode(loggedInResponse);
+    userInfo = jwt.decode(loggedInResponse); // Decodes the JWT token
   }
 
   return (
