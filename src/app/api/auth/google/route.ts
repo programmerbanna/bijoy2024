@@ -56,12 +56,12 @@ export async function GET(request: any) {
   });
 
   // Decode the ID token to retrieve user information
-  const userInfo = jwt.decode(tokens.id_token);
+  const userInfo = tokens.id_token;
 
   // Store user information in a secure, HTTP-only cookie
   cookies().set({
     name: "userInfo",
-    value: JSON.stringify(userInfo), // Store user info as a JSON string
+    value: userInfo || "", // Store user info as a JSON string
     httpOnly: true, // Ensures the cookie is only accessible by the server
     path: "/", // Cookie is accessible site-wide
     secure: process.env.NODE_ENV === "production", // Send over HTTPS in production only

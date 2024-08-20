@@ -1,70 +1,51 @@
-"use client";
 /** Global import block
  * required packages
- * React | Antd
+ *  Antd | JsonWebToken
  */
-import { Alert, Button, Skeleton, Table } from "antd";
-import { useState } from "react";
+import { Alert } from "antd";
+import Title from "antd/es/typography/Title";
+const jwt = require("jsonwebtoken");
 
 /** Custom import block
  * custom file based imports
  * custom component imports
  */
-import useFetch from "@/hooks/useFetch";
-import { tableColumns as columns } from "./config/constant";
+import Main from "@/modules/main";
+import isLoggedIn from "@/app/(auth)/lib/isLoggedIn";
 
 /* -------------------------------------------------------------------------- */
 /*                                 home module                                */
 /* -------------------------------------------------------------------------- */
-export default function Home() {
-  /* State declarations **/
-  const [url, setUrl] = useState<string | null>(null);
-  const [isTableVisible, setIsTableVisible] = useState<boolean>(false);
+export default async function Home() {
+  const loggedInResponse = await isLoggedIn();
 
-  /* custom hooks usage */
-  const { data: users, loading, error } = useFetch(url);
-
-  /** Fetch user handler **/
-  const fetchUsers = () => {
-    setIsTableVisible(true);
-    setUrl("https://jsonplaceholder.typicode.com/users");
-  };
+  let userInfo;
+  if (loggedInResponse) {
+    userInfo = jwt.decode(loggedInResponse);
+  }
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-        <h1 className="text-3xl font-bold mb-8 text-center">
-          Welcome to Next.js Developer Evaluation Task
-        </h1>
-        {!isTableVisible ? (
-          <Button type="primary" onClick={fetchUsers} disabled={loading}>
-            Fetch Users
-          </Button>
-        ) : (
-          <Button
-            type="default"
-            onClick={() => setIsTableVisible(false)}
-            className="ml-2"
-          >
-            Close Table
-          </Button>
-        )}
-        <div className="w-full max-w-4xl mt-8">
-          {loading && <Skeleton active />}
-          {error && (
-            <Alert message="Error" description={error} type="error" showIcon />
-          )}
-          {!loading && !error && users?.length > 0 && isTableVisible && (
-            <Table
-              columns={columns}
-              dataSource={users}
-              rowKey={(record) => record.id}
-              pagination={false}
-              className="mt-4"
-            />
-          )}
-        </div>
-      </div>
+      {userInfo ? (
+        <Alert
+          message={
+            <Title level={2} className="text-center m-0">
+              Hi, {userInfo?.name}
+            </Title>
+          }
+          type="success"
+          showIcon
+          className="mb-4 w-full"
+        />
+      ) : (
+        <Alert
+          message="You are not logged in. Please log in!"
+          type="warning"
+          showIcon
+          className="mb-4 w-full"
+        />
+      )}
+      <Main />
     </>
   );
 }
