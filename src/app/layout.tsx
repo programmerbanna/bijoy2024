@@ -1,6 +1,6 @@
 /** Global import block
  * required packages
- * NextJs | Antd | Google font
+ * Next | Antd | Google font
  */
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";

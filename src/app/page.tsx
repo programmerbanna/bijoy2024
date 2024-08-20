@@ -1,7 +1,7 @@
 "use client";
 /** Global import block
  * required packages
- * NextJs | Antd
+ * React | Antd
  */
 import { Alert, Button, Skeleton, Table } from "antd";
 import { useState } from "react";
@@ -11,7 +11,7 @@ import { useState } from "react";
  * custom component imports
  */
 import useFetch from "@/hooks/useFetch";
-import { tableColumns } from "./config/constant";
+import { tableColumns as columns } from "./config/constant";
 
 /* -------------------------------------------------------------------------- */
 /*                                 home module                                */
@@ -56,7 +56,7 @@ export default function Home() {
           )}
           {!loading && !error && users?.length > 0 && isTableVisible && (
             <Table
-              columns={tableColumns}
+              columns={columns}
               dataSource={users}
               rowKey={(record) => record.id}
               pagination={false}
